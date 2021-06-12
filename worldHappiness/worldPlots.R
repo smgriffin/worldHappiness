@@ -55,3 +55,14 @@ p_bar + labs(title= "Average Happiness by Region",
 # Rename Columns
 # names(agg_data)[names(agg_data) == "happiness_index$Year"] <- "Year"
 # names(agg_data)[names(agg_data) == "happiness_index$Happiness"] <- "Happiness"
+
+# Plotting with a facet grid
+p_facet <- ggplot(happiness_region, aes(x= Corruption, y= Generosity, color = Region)) + geom_point()
+p_facet <- p_facet + facet_grid(cols = vars(Region), scales = "free")
+p_facet <- p_facet + theme(strip.text.y = element_text(size = 3))
+
+
+
+
+
+
