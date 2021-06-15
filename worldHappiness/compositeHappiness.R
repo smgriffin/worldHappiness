@@ -11,9 +11,16 @@ happiness_index$"Composite" <- happiness_index$Happiness + happiness_index$"GDP 
 # Alternatively, use mutate()
 
 # Group by Country and find the average composite score by Country and average GDP per Capita
-happiness_index <- happiness_index %>% rename("GDP" = "GDP Per Capita")
+happiness_index <- happiness_index %>% rename("GDP" = "GDP Per Capita", "Social" = "Social Support")
 happy_country <- happiness_index %>% group_by(Country)
-happy_summary <- happy_country %>% summarise('Composite' = mean(Composite), 'GDP' = mean(GDP))
+happy_summary <- happy_country %>% summarise('Composite' = mean(Composite),
+                                             'GDP' = mean(GDP),
+                                             'Social' = mean(Social),
+                                             'Health' = mean(Health),
+                                             'Freedom' = mean(Freedom),
+                                             'Generosity' = mean(Generosity),
+                                             'Corruption' = mean(Composite)
+                                             )
 
 regions <- happy_country$Region
 names(regions) <- happy_country$Country
@@ -32,6 +39,9 @@ p_top <- p_top + labs(title= "Happiest Countries",
                       caption = "World Happiness Index",
                       x= "Country",
                       y= "Happiness Composite Score")
+
+# Plot the happiest countries on a stacked horizontal bar plot
+#p_stacked <- happy_top %>% ggplot(aes(fill = Composite, y= Region, x = GDP + Social + Health + Freedom + Generosity)) + geom_bar(stat='identity')
 
 # Arrange in order of happiness (ascending)
 happy_bottom <- happy_summary %>% arrange(Average)

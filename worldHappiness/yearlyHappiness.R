@@ -51,3 +51,11 @@ p_gdp <- p_gdp + labs(title= "GDP by Year",
                                     caption = "World Happiness Index",
                                     x= "Year",
                                     y= "GDP")
+
+# Plot the happiness ladder by year using violin plot
+#p_violin <- happiness_year %>% ggplot(aes(x= Year, y = Happiness)) + geom_violin() + geom_point()
+#p_violin <- p_violin + labs(title= "Life Ladder Score by Year",
+#                      subtitle= "Years 2006-2021",
+#                      caption = "World Happiness Index",
+#                      x= "Year",
+#                      y= "Life Ladder")
